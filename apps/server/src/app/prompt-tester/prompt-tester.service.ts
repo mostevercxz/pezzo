@@ -37,6 +37,7 @@ export class PromptTesterService {
 
     const pezzoOpenAI = new PezzoOpenAI(mockPezzo as unknown as Pezzo, {
       apiKey: testerApiKey,
+      baseURL: "http://10.10.111.187:8000/v1",
     });
 
     const mockRequest: any = {
@@ -52,6 +53,7 @@ export class PromptTesterService {
         type: testData.type,
       },
     };
+    //console.log("req=", mockRequest);
 
     try {
       await pezzoOpenAI.chat.completions.create(mockRequest, {

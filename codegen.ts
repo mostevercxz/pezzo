@@ -5,7 +5,7 @@ const OFFLINE =
 
 const schema = OFFLINE
   ? "./apps/server/schema.graphql"
-  : "http://localhost:3000/graphql";
+  : "http://10.10.111.172:3000/graphql";
 
 const config: CodegenConfig = {
   schema,

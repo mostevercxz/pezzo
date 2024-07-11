@@ -20,6 +20,8 @@ const buildOpenAIReport = (
 ) => {
   const { response, request } = dto;
 
+  console.log("recv response=", response);
+
   const responseBody = response.body;
   const usage = responseBody.usage;
   const requestBody = request.body;

@@ -66,11 +66,13 @@ export const PromptEditView = () => {
 
   const handleRunTest = () => {
     const formValues = form.getFieldsValue();
+    console.log("form=", formValues);
 
     const provider = "OpenAI";
     const hasProviderApiKey = !!providerApiKeys.find(
       (key) => key.provider === provider
     );
+    console.log("api key=", providerApiKeys);
     trackEvent("prompt_run_test_clicked");
 
     if (!hasProviderApiKey) {

@@ -18,6 +18,12 @@ type OpenAIChatCompletionCreateParams = Omit<
   messages?: OpenAI.Chat.CompletionCreateParams["messages"];
 };
 
+interface MyCompletionCreateParamsNonStreaming extends OpenAI.Chat.CompletionCreateParamsNonStreaming {
+      user?: string;
+          assistant?: string;
+};
+
+
 interface PezzoProps {
   variables?: Record<string, string | number | boolean>;
   properties?: Record<string, string | number | boolean>;
@@ -53,6 +59,9 @@ class Completions {
       | Parameters<OpenAI["chat"]["completions"]["create"]>[1]
       | PezzoProps = {}
   ): Promise<OpenAI.Chat.ChatCompletion> {
+    //this.openai.baseURL = "http://10.10.111.187:8000/v1";
+    //this.openai._options.baseURL = "http://10.10.111.187:8000/v1";
+    //console.log(this.openai);
     const arg1 = _arg1 as PezzoCreateChatCompletionRequest;
 
     const pezzoPrompt = arg1.pezzo as any; // TODO: Fix this type
@@ -151,9 +160,14 @@ class Completions {
 
     if (!pezzoOptions?.cache || (pezzoOptions?.cache && !baseReport.cacheHit)) {
       try {
+        console.log("request body=", requestBody);
         response = await this.openai.chat.completions.create(
           {
-            ...(requestBody as OpenAI.Chat.CompletionCreateParamsNonStreaming),
+            //...(requestBody as OpenAI.Chat.CompletionCreateParamsNonStreaming),
+            ...(requestBody as any),
+            "user" : "主角",
+            "assistant": "李逍遥",
+            "max_new_tokens":200,
           },
           "variables" in optionsOrPezzoProps
             ? undefined

@@ -63,8 +63,12 @@ export const useIdentify = (user: GetMeQuery["me"]) => {
     (analytics.plugins as any).segment?.group(organizationId, {});
 
     const window = (global as any).window;
+    console.log("windows=", window);
 
     // GTM data layer
+    if (!window.dataLayer){
+      window.dataLayer=  [];
+    }
     window.dataLayer.push({ ...identifyRequest });
   }, [user, organizationId, projectId]);
 };

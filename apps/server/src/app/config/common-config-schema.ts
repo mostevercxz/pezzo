@@ -7,15 +7,15 @@ const commonConfigSchema = {
   DATABASE_URL: Joi.string().required(),
   SUPERTOKENS_CONNECTION_URI: Joi.string().required(),
   SUPERTOKENS_API_KEY: Joi.string().optional(),
-  SUPERTOKENS_API_DOMAIN: Joi.string().default("http://localhost:3000"),
-  SUPERTOKENS_WEBSITE_DOMAIN: Joi.string().default("http://localhost:4200"),
+  SUPERTOKENS_API_DOMAIN: Joi.string().default("http://10.10.111.172:3000"),
+  SUPERTOKENS_WEBSITE_DOMAIN: Joi.string().default("http://10.10.111.172:4200"),
   OPENSEARCH_URL: Joi.string().required(),
   OPENSEARCH_AUTH: Joi.string().valid("insecure", "aws").default("insecure"),
   REDIS_URL: Joi.string().required(),
   REDIS_TLS_ENABLED: Joi.boolean().default(false),
   KMS_REGION: Joi.string().default("us-east-1"),
   KMS_LOCAL: Joi.boolean().default(true),
-  KMS_LOCAL_ENDPOINT: Joi.string().default("http://localhost:9981"),
+  KMS_LOCAL_ENDPOINT: Joi.string().default("http://10.10.111.172:9981"),
   KMS_KEY_ARN: Joi.string().default(
     "arn:aws:kms:us-east-1:111122223333:key/demo-master-key"
   ),
